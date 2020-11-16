@@ -9,9 +9,14 @@
                         <v-text-field v-model="user.email" :rules="emailRules" name="email" label="Email" id="email" required></v-text-field>
                         <v-text-field v-model="user.password" name="password" label="Senha" id="password" required></v-text-field>
                         <v-text-field v-model="user.password" name="password_confirm" label="Confirmação de Senha" id="password_confirm" required></v-text-field>
-                        <v-btn :disabled="isRequesting==true" class="mr-4" color="primary" @click="cadastrar">Cadastrar</v-btn>
-                        <router-link to="/"><v-btn class="mr-4" replace>Homepage</v-btn></router-link>
-                        <router-link to="/login"><v-btn class="mr-4" replace>Login</v-btn></router-link>
+                        <v-btn :disabled="isRequesting==true" raised class="mr-4" color="primary" @click="cadastrar">Cadastrar</v-btn>
+                        
+                        <router-link to="/" style="text-decoration:none;" replace>
+                            <v-btn class="mr-4" outlined>Homepage</v-btn>
+                        </router-link>
+                        <router-link to="/login" style="text-decoration:none;" replace>
+                            <v-btn class="mr-4" outlined>Login</v-btn>
+                        </router-link>
                     </v-form>          
                 </v-card-actions>
                 <v-card-text v-else>
