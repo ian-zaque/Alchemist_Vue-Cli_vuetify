@@ -8,7 +8,9 @@
                         <v-text-field v-model="user.email" name="email" label="Email" id="email" required></v-text-field>
                         <v-text-field v-model="user.password" name="password" label="Senha" id="password" required></v-text-field>
                         <v-btn :disabled="isRequesting==true" class="mr-4" color="primary" @click="logar">Entrar</v-btn>
-                    </v-form>                
+                        <router-link to="/"><v-btn class="mr-4" outlined replace>Homepage</v-btn></router-link>
+                        <router-link to="/cadastro"><v-btn class="mr-4" outlined replace>Cadastre-se</v-btn></router-link>
+                    </v-form>
                 </v-card-actions>
                 <v-card-text v-else>
                     

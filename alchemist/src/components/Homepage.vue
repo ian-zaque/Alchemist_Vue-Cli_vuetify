@@ -7,11 +7,11 @@
                     <router-link to="/login" replace>
                         <v-btn outlined text class="ma-2 item" color="light">Entrar</v-btn>                    
                     </router-link>
-                    <router-link to="/cadastro" replace> <v-btn outlined text class="item ma-2 item" color="secondary">Cadastrar</v-btn> </router-link>
+                    <router-link to="/cadastro" replace> <v-btn outlined text color="secondary">Cadastrar</v-btn> </router-link>
                 </v-card-actions>
                 <v-card-actions v-else>
                     <h5><strong>{{userAtual.user.name}}</strong> está logado!</h5>
-                    <router-link to="/perfil"><v-btn outlined text class="item ma-2 item" color="secondary">Perfil</v-btn>   </router-link>
+                    <router-link to="/perfil" replace> <v-btn outlined text color="secondary">Perfil</v-btn> </router-link>
                 </v-card-actions>
             </v-card>
         </div>
@@ -41,24 +41,3 @@ export default {
 
 }
 </script>
-<style>
-   .item{
-        position: relative; font-size: 20px; text-decoration: none;
-        transition: 0.4s ease; margin: 0px 10px 0px 10px;
-    }
-    .item:hover{
-        color: #313238; font-style: italic; text-decoration: none; font-size: 22px;
-    }
-    .item:hover::after{
-        color: #313238; font-style: italic; text-decoration: none; font-size: 22px;
-    }
-    .links{
-        color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-    }
-</style>
