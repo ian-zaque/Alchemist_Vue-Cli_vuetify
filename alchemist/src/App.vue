@@ -1,14 +1,7 @@
 <template>
   <v-app id="inspire">
-    <v-card>
+    <v-card>          <!--CARD-->
       <v-navigation-drawer v-model="drawer" app>  <!--DRAWER-->
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title @click="drawer=!drawer" class="title">
-              <router-link to="/"><v-icon>{{ 'fas fa-atom' }}</v-icon>Home</router-link>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
 
         <v-divider></v-divider>
 
@@ -17,21 +10,16 @@
             <v-list-item-icon>
               <v-icon>{{ link.icone }}</v-icon>
             </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>
-                {{link.titulo}}
-              </v-list-item-title>
-            </v-list-item-content>
+            <router-link :to="link.rota" style="text-decoration:none;" replace><p class="item" depressed>{{link.titulo}}</p></router-link>
           </v-list-item>
         </v-list>
         
       </v-navigation-drawer>    <!--FIM DRAWER-->
-    </v-card>
+    </v-card>         <!--FIM CARD-->
 
       <v-app-bar app>     <!--NAV BAR-->
           <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
-          <v-toolbar-title>Alchemist</v-toolbar-title>
+          <router-link to="/" style="text-decoration: none;" replace><v-toolbar-title depressed>Alchemist</v-toolbar-title></router-link>
       </v-app-bar>      <!--FIM NAV BAR-->
 
       <v-main>
@@ -46,13 +34,18 @@
     data: () => ({ 
       drawer:false,
       links:[
-        {rota:'/',titulo:'Home',icone:'fas fa-atom'},
-        {rota:'/cadastro',titulo:'Cadastro',icone:"fas fa-user-plus"},
-        {rota:'/login',titulo:'Login',icone:'fas fa-sign-in-alt'},
-        {rota:'/perfil',titulo:'Perfil',icone:'far fa-id-badge'},
-        {rota:'/sair',titulo:'Sair',icone:'fas fa-sign-out-alt'},
+        {rota:'/cadastro',titulo:'Cadastro',icone:"fas fa-user-plus",isPrivado:false},
+        {rota:'/login',titulo:'Login',icone:'fas fa-sign-in-alt',isPrivado:false},
+        {rota:'/perfil',titulo:'Perfil',icone:'far fa-id-badge',isPrivado:true},
+        {rota:'/sair',titulo:'Sair',icone:'fas fa-sign-out-alt',isPrivado:true},
       ],
 
     }),
   }
 </script>
+<style>
+  .item{
+    text-decoration: none; margin: 10px 0px 0px -25px;
+  }
+
+</style>
