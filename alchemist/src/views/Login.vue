@@ -5,8 +5,8 @@
             <v-card class="mx-auto d-flex justify-center">
                 <v-card-actions v-if="msg==null">
                     <v-form>
-                        <v-text-field v-model="user.email" name="email" label="Email" id="email" required></v-text-field>
-                        <v-text-field v-model="user.password" name="password" label="Senha" id="password" required></v-text-field>
+                        <v-text-field v-model="user.email" name="email" type="email" label="Email" id="email" required></v-text-field>
+                        <v-text-field v-model="user.password" type="password" name="password" label="Senha" id="password" required></v-text-field>
                         <v-btn :disabled="isRequesting==true" raised class="mr-4" color="primary" @click="logar">Entrar</v-btn>
 
                         <router-link to="/" style="text-decoration:none;" replace>
@@ -17,9 +17,15 @@
                         </router-link>
                     </v-form>
                 </v-card-actions>
-                <v-card-text v-else>
-                    
-                </v-card-text>
+                <v-card-actions class="container mx-auto" v-else>
+                    <v-alert :type="logou==true ? 'success':'error'" dense>
+                        <p v-if="msg.status==200">Logado com Sucesso!</p>
+                        <p v-else>Erro ao logar? Tente Novamente</p>
+                    </v-alert>
+                    <router-link class="d-flex justify-center" to="/" style="text-decoration:none;" replace>
+                        <v-btn class="mr-4" outlined>Homepage</v-btn>
+                    </router-link>
+                </v-card-actions>
             </v-card>
         </div>
     </v-container>
@@ -33,9 +39,23 @@ export default {
         }
     },
 
+    computed: {
+        logado() { return this.$store.state.Auth.status.loggedIn; }
+    },
+
+    created() {
+        if (this.logado) { this.$router.replace('/'); }
+    },
+
     methods: {
         logar(){
             this.isRequesting=true;
+            this.$store.dispatch('Auth/login',this.user)
+                .then(res=>{ this.msg =res; console.log(this.msg); this.logou=true; this.isRequesting=false;
+                })
+                .catch(error=>{ this.msg=error; this.logou=false; this.isRequesting=false;
+                    console.error(error);
+                });
         }
     },
 

@@ -7,7 +7,7 @@
                     <v-form ref="form" lazy-validation>
                         <v-text-field v-model="user.name" name="name" label="Nome" id="name" required></v-text-field>
                         <v-text-field v-model="user.email" :rules="emailRules" name="email" label="Email" id="email" required></v-text-field>
-                        <v-text-field v-model="user.password" name="password" label="Senha" id="password" required></v-text-field>
+                        <v-text-field v-model="user.password" type="password" name="password" label="Senha" id="password" required></v-text-field>
                         <v-text-field v-model="user.password" name="password_confirm" label="Confirmação de Senha" id="password_confirm" required></v-text-field>
                         <v-btn :disabled="isRequesting==true" raised class="mr-4" color="primary" @click="cadastrar">Cadastrar</v-btn>
                         
@@ -15,17 +15,21 @@
                             <v-btn class="mr-4" outlined>Homepage</v-btn>
                         </router-link>
                         <router-link to="/login" style="text-decoration:none;" replace>
-                            <v-btn class="mr-4" outlined>Login</v-btn>
+                            <v-btn class="mr-4" outlined>Entrar</v-btn>
                         </router-link>
                     </v-form>          
                 </v-card-actions>
                 <v-card-text v-else>
-                    <v-alert :type="logou==true ? 'success':'error'" dense>
+                    <v-alert :type="cadastrou==true ? 'success':'error'" dense>
                         {{msg}}
                     </v-alert>
                     <div class="d-flex justify-center">
-                        <router-link to="/"><v-btn class="mr-4" replace>Homepage</v-btn></router-link>
-                        <router-link to="/login"><v-btn class="mr-4" replace>Login</v-btn></router-link>
+                        <router-link to="/" style="text-decoration:none;" replace>
+                            <v-btn class="mr-4" outlined>Homepage</v-btn>
+                        </router-link>
+                        <router-link to="/login" style="text-decoration:none;" replace>
+                            <v-btn class="mr-4" outlined>Entrar</v-btn>
+                        </router-link>
                     </div>
                 </v-card-text>
             </v-card>
@@ -45,9 +49,22 @@ export default {
         }
     },
 
+    computed: {
+        logado() { return this.$store.state.Auth.status.loggedIn; }
+    },
+
+    created() {
+        if (this.logado) { this.$router.replace('/'); }
+    },
+
     methods: {
         cadastrar(){
             this.isRequesting=true;
+            this.$store.dispatch('Auth/register', this.user)
+                .then(res => {
+                    this.msg = res; this.cadastrou = true; this.isRequesting=false;
+                })
+                .catch(error => { this.isRequesting=false; this.msg = error; this.cadastrou=false; console.error(error); })
         }
     },
 

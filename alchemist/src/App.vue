@@ -6,7 +6,7 @@
         <v-divider></v-divider>
 
         <v-list dense nav>
-          <div>
+          <div v-if="!isLogado">
               <v-list-item large>
                 <v-list-item-icon>  <!--LOGIN-->
                   <v-icon>{{ 'fas fa-sign-in-alt' }}</v-icon>
@@ -20,7 +20,7 @@
                 <router-link to="/login" style="text-decoration:none;" replace> <p class="item" depressed>Cadastre-se</p> </router-link>
             </v-list-item>        <!--FIM CADASTRO-->
           </div>
-           <div>
+           <div v-else>
               <v-list-item large>
                 <v-list-item-icon>  <!--PERFIL-->
                   <v-icon>{{ 'far fa-id-badge' }}</v-icon>
@@ -58,12 +58,22 @@
     }),
 
     computed:{
-
+      isLogado() {
+          if(this.$store.state.Auth.user){ return true;  }
+          return false;
+      },
+      userAtual() { 
+            if(this.isLogado){
+                console.log(localStorage.getItem('user'));
+                return JSON.parse(localStorage.getItem('user'));
+            }
+            return null;
+        }
     },
 
     methods: {
       sair(){
-
+        this.$store.dispatch('Auth/logout'); this.drawer= !this.drawer; this.$router.replace('/')
       }
     },
 
