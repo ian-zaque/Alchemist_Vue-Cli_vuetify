@@ -1,2 +1,2 @@
 # Alchemist_Vue-Cli_vuetify
- CRUD básico utilizando Vue2, Vue-cli e Vuetify
+ Projeto gerador de sessões utilizando Vue-cli e Vuetify em conjunto com o projeto Amestris
