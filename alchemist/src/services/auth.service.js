@@ -6,9 +6,10 @@ class AuthService{
 
     login(user){
         return axios.post(url+'/login',user)
-            .then(res=>{ 
+            .then(res=>{
                 if(res.data.access_token){
                     localStorage.setItem('user',JSON.stringify(res.data));
+                    localStorage.setItem('horaLogin',JSON.stringify(Date.now()))
                 }
                 return res;
             })
@@ -22,9 +23,13 @@ class AuthService{
 
     logout() {
         localStorage.removeItem('user');
-        return axios.post(url+'/logout')
-            .then(res=>{ return res; })
-            .catch(error=>{ console.error(error); })
+        localStorage.removeItem('horaLogin');
+    }
+
+    refreshToken(){
+        return axios.get(url+'/refresh')
+                .then(res=>{ return res; })
+                .catch(erro=>{ return erro; })
     }
 
     authHeader(){
