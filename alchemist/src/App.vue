@@ -21,12 +21,20 @@
             </v-list-item>        <!--FIM CADASTRO-->
           </div>
            <div v-else>
-              <v-list-item large>
-                <v-list-item-icon>  <!--PERFIL-->
+              <v-list-item large>   <!--PERFIL-->
+                <v-list-item-icon>
                   <v-icon>{{ 'far fa-id-badge' }}</v-icon>
                 </v-list-item-icon>
                 <router-link to="/perfil" style="text-decoration:none;" replace> <p class="item" depressed>Perfil</p> </router-link>
-            </v-list-item>        <!--FIM PERFIL-->
+              </v-list-item>        <!--FIM PERFIL-->
+
+              <v-list-item large>   <!--EMPRESAS-->
+                <v-list-item-icon>
+                  <v-icon>{{ 'fab fa-empire' }}</v-icon>
+                </v-list-item-icon>
+                <router-link to="/empresas" style="text-decoration:none;" replace> <p class="item" depressed>Empresas</p> </router-link>
+              </v-list-item>        <!--FIM EMPRESAS-->
+
             <v-list-item large>   <!--SAIR-->
                 <v-list-item-icon>
                   <v-icon>{{ 'fas fa-sign-out-alt' }}</v-icon>

@@ -4,6 +4,7 @@ import Homepage from '../components/Homepage.vue'
 import Login from '../views/Login.vue'
 import Cadastro from '../views/Cadastro.vue'
 import Perfil from '../views/Perfil.vue'
+import Empresa from '../views/Empresa.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/perfil',
     name: 'Perfil',
     component: Perfil
+  },
+  {
+    path: '/empresas',
+    name: 'Empresa',
+    component: Empresa
   },
 ]
 

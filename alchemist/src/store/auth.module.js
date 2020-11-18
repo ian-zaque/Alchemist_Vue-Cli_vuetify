@@ -28,6 +28,19 @@ export const Auth ={
             commit('logout');
         },
 
+        show({commit,id}){
+            return AuthService.show(id).then(
+              response=>{
+                commit('sucessoShowEmpresas')
+                return Promise.resolve(response.data)
+              },
+              error=>{
+                commit('falhaShowEmpresas')
+                return Promise.reject(error)
+              }
+            )
+        },
+
         register({commit},user){
             return AuthService.register(user).then(
                 response => {
@@ -64,7 +77,16 @@ export const Auth ={
 
         falhaRegistro(state) {
           state.status.loggedIn = false;
-        }
+        },
+
+        sucessoShowEmpresas(state){
+          state.status.loggedIn=true;
+        },
+
+        falhaShowEmpresas(state){
+          state.status.loggedIn=false;
+        },
+
       }
 
 };

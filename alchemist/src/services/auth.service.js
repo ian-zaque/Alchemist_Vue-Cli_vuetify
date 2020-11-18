@@ -42,6 +42,12 @@ class AuthService{
         else { return {}; }
     }
 
+    show(id){
+        return axios.get(url+'/show/'+id)
+                .then(res=>{ return res; })
+                .catch(erro=>{return erro; });
+    }
+
 }
 
 export default new AuthService();
