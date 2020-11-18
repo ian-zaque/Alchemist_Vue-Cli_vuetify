@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://127.0.0.1:8001/api/auth';
+const url = 'http://127.0.0.1:8000/api/auth';
 
 class AuthService{
 
@@ -22,7 +22,9 @@ class AuthService{
 
     logout() {
         localStorage.removeItem('user');
-
+        return axios.post(url+'/logout')
+            .then(res=>{ return res; })
+            .catch(error=>{ console.error(error); })
     }
 
     authHeader(){

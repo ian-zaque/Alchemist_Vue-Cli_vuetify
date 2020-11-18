@@ -1,6 +1,6 @@
 <template>
     <v-container class="d-flex justify-center">
-        <div class="content">
+        <div>
             <h5 class="card-title" style="font-size:50px;">Bem-vindo(a) à <strong>Alchemist</strong>!</h5>
             <v-card class="mx-auto">
                 <v-card-actions class="d-flex justify-center" v-if="isLogado==false">

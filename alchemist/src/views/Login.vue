@@ -19,8 +19,12 @@
                 </v-card-actions>
                 <v-card-actions class="container mx-auto" v-else>
                     <v-alert :type="logou==true ? 'success':'error'" dense>
-                        <p v-if="msg.status==200">Logado com Sucesso!</p>
-                        <p v-else>Erro ao logar? Tente Novamente</p>
+                        <div v-if="msg.status==200">
+                            Logado com Sucesso!
+                        </div>
+                        <div v-else>
+                            Erro ao logar? Tente Novamente
+                        </div>
                     </v-alert>
                     <router-link class="d-flex justify-center" to="/" style="text-decoration:none;" replace>
                         <v-btn class="mr-4" outlined>Homepage</v-btn>
